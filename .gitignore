@@ -1,0 +1,7 @@
+node_modules/
+.env
+.idea/
+*.log
+# real student and teacher data, never commit
+database/injection/data/
+database/injection/check_data/
