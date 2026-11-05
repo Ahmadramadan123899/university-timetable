@@ -14,32 +14,111 @@ email with Nodemailer, Python scripts to load the data.
 
 ![Student schedule](docs/screenshots/student_schedule.png)
 
-## What it does
+## Who uses it
 
-There are three kinds of users: students, teachers and admins.
+There are three kinds of users. Each one only sees its own pages.
 
-**Students and teachers**
-- See their week as a grid of sessions (Course, TD or TP), with the course, teacher and room.
-- Filter by academic year, language, class group, TD group, TP group and a range of weeks.
-- A notification bell shows cancellations, reschedules, room changes and exam announcements.
+![What each role can do](docs/screenshots/roles.png)
 
-**Admins**
-- **Dashboard:** number of users and courses, recent activity, and a chart of the schedule changes.
-- **Course session dashboard:** for each course, how many sessions are done out of the total
-  (Course, TD and TP).
-- **Manage schedules:** add, edit, cancel or reschedule sessions, filter by year, major, section,
-  teacher and dates. Every change is saved in a history table.
-- **Manage courses** and **manage users** (students are placed in a class group with a TD and TP group).
-- **Manage notifications:** send a notification to a class group, shown in the app and sent by email.
+## A tour of the website
 
-**Accounts**
-- Login with email and password. Passwords are hashed with bcrypt, and the session uses a JWT token.
-- Each role only sees its own pages.
-- "Forgot password": the user gets an email with a link, and the token in the link expires.
+### 1. Logging in
 
-| Admin dashboard | Manage schedules |
+Users log in with their email and password. Passwords are hashed with bcrypt, and the session
+uses a JWT token.
+
+<img src="docs/screenshots/login.png" width="380" alt="Login page">
+
+### 2. Forgot password
+
+The user enters their email, receives a reset link by email (it expires after 1 hour), and
+chooses a new password.
+
+| Ask for a reset | Confirmation |
 |---|---|
-| ![Admin dashboard](docs/screenshots/admin_dashboard.png) | ![Manage schedules](docs/screenshots/manage_schedules.png) |
+| <img src="docs/screenshots/forgot_password.png" width="360" alt="Forgot password"> | <img src="docs/screenshots/reset_email_sent.png" width="340" alt="Reset email sent"> |
+
+![Reset email](docs/screenshots/reset_email.png)
+
+| New password | Done |
+|---|---|
+| <img src="docs/screenshots/reset_password.png" width="400" alt="Reset password"> | <img src="docs/screenshots/reset_success.png" width="400" alt="Reset successful"> |
+
+### 3. Student and teacher schedules
+
+Students see the sessions of their class group, and teachers see the sessions they teach.
+Each session shows the course, its code, the teacher, the room and the type (Course, TD or TP).
+The week can be filtered by year, academic year, language, class group, TD group, TP group
+and a range of weeks.
+
+| Student | Teacher |
+|---|---|
+| ![Student schedule](docs/screenshots/student_schedule.png) | ![Teacher schedule](docs/screenshots/teacher_schedule.png) |
+
+### 4. Notifications
+
+The bell shows the unread notifications of the user's class group (or, for a teacher, of the
+sessions they teach): cancellations, reschedules, room changes and exam announcements.
+
+<img src="docs/screenshots/notification_bell.png" width="560" alt="Notification bell">
+
+### 5. Admin dashboard
+
+The number of users and courses, the recent activity, and a chart of the schedule changes over
+the last 30 days.
+
+![Admin dashboard](docs/screenshots/admin_dashboard.png)
+
+The course session dashboard shows, for each course, how many sessions are done out of the
+total, for Course, TD and TP, with filters by course name, semester, year and session type.
+
+![Course session dashboard](docs/screenshots/course_session_dashboard.png)
+
+### 6. Managing schedules
+
+The admin adds sessions (Course, TD or TP), edits, cancels or reschedules them, and filters by
+year, major, section, teacher and dates. Every cancellation or reschedule is saved in a history
+table. A session must last 1 hour 30 minutes to fit in the timetable grid.
+
+![Manage schedules](docs/screenshots/manage_schedules.png)
+
+<img src="docs/screenshots/add_schedule.png" width="320" alt="Add a session">
+
+### 7. Managing courses
+
+Add, edit or delete courses, with their code, name, description, hours and semester.
+
+![Manage courses](docs/screenshots/manage_courses.png)
+
+<img src="docs/screenshots/add_course.png" width="420" alt="Add a course">
+
+### 8. Managing users
+
+Add, edit or delete students, teachers and admins, with filters by role, year, major and section.
+A new student is placed in a class group, with a TD group and a TP group.
+
+![Manage users](docs/screenshots/manage_users.png)
+
+<img src="docs/screenshots/add_user.png" width="320" alt="Add a user">
+
+### 9. Sending notifications
+
+The admin writes a notification for a class group. It appears in the app, and it is also sent
+by email to the students of that group.
+
+![Manage notifications](docs/screenshots/manage_notifications.png)
+
+| Writing it | The email students receive |
+|---|---|
+| <img src="docs/screenshots/add_notification.png" width="420" alt="New notification"> | ![Notification email](docs/screenshots/notification_email.png) |
+
+### 10. On a phone
+
+The pages adapt to small screens, and the admin sidebar becomes a menu.
+
+| Schedule | Admin menu |
+|---|---|
+| <img src="docs/screenshots/mobile_schedule.png" width="220" alt="Schedule on a phone"> | <img src="docs/screenshots/mobile_sidebar.png" width="220" alt="Admin menu on a phone"> |
 
 ## Database
 
